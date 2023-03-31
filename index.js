@@ -14,12 +14,27 @@ app.get('/', (req, res) => {
 
 
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.b7gxqpg.mongodb.net/?retryWrites=true&w=majority`;
 
+// its working but server down
+
+
+// const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.b7gxqpg.mongodb.net/?retryWrites=true&w=majority`;
+
+
+
+
+// const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+
+
+// New Mongodb Added...........
+
+
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.b7gxqpg.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 console.log('database connected');
 
-// New Mongodb Added...........
+
+
 
 
 
@@ -97,7 +112,7 @@ async function run() {
         })
         //get all sellers
 
-        app.get('/allsellers', async (req, res) => {
+        app.get('/', async (req, res) => {
             const query = { role: "seller" }
             const result = await usersCollection.find(query).toArray()
             return res.send(result)
